@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
-import android.location.LocationRequest
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,6 +25,10 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.test.weatherapp.models.WeatherResponse
+import com.test.weatherapp.network.WeatherService
+import retrofit.*
+
 
 class MainActivity : AppCompatActivity() {
     // A fused location client variable which is further used to get the user's current location
@@ -139,22 +142,81 @@ class MainActivity : AppCompatActivity() {
 
             val longitude = mLastLocation.longitude
             Log.i("Current Longitude", "$longitude")
-            getLocationWeatherDetails()
+            getLocationWeatherDetails(latitude,longitude)
         }
     }
-    private fun getLocationWeatherDetails(){
+    private fun getLocationWeatherDetails(latitude: Double, longitude:Double ){
 
 //          Here we will check whether the internet
 //          connection is available or not using the method which
 //          we have created in the Constants object.)
 
         if (Constants.isNetworkAvailable(this@MainActivity)) {
+                 //get the data api
+            //  Make an api call using retrofit.)
 
-            Toast.makeText(
-                this@MainActivity,
-                "You have connected to the internet. Now you can make an api call.",
-                Toast.LENGTH_SHORT
-            ).show()
+            val retrofit: Retrofit = Retrofit.Builder()
+                // API base URL.
+                .baseUrl(Constants.BASE_URL)
+//                /** Add converter factory for serialization and deserialization of objects. */
+//                /**
+//                 * Create an instance using a default {@link Gson} instance for conversion. Encoding to JSON and
+//                 * decoding from JSON (when no charset is specified by a header) will use UTF-8.
+//                 */
+                .addConverterFactory(GsonConverterFactory.create()) //for transfer in correct format json
+//                /** Create the Retrofit instances. */
+                .build()
+
+//            /**
+//             * Here we map the service interface in which we declares the end point and the API type
+//             *i.e GET, POST and so on along with the request parameter which are required.
+//             */ create a service base an retrofit
+            val service: WeatherService =
+                retrofit.create<WeatherService>(WeatherService::class.java)
+
+//            /** An invocation of a Retrofit method that sends a request to a web-server and returns a response.
+//             * Here we pass the required param in the service
+//             create a listCall base an service
+            val listCall: Call<WeatherResponse> = service.getWeather(
+                latitude, longitude, Constants.METRIC_UNIT, Constants.APP_ID
+            )
+
+            // Callback methods are executed using the Retrofit callback executor.
+            listCall.enqueue(object : Callback<WeatherResponse>  {
+                @SuppressLint("SetTextI18n")
+                override fun onResponse(response: Response<WeatherResponse>?, retrofit: Retrofit?) { // Check weather the response is success or not.
+                    if (response!!.isSuccess) {
+
+                        /// The de-serialized response body of a successful response. */
+                        val weatherList: WeatherResponse = response.body()!!
+                        Log.i("Response Result", "$weatherList")
+                    } else {
+                        // If the response is not success then we check the response code.
+                        val sc = response.code()
+                        when (sc) {
+                            400 -> {
+                                Log.e("Error 400", "Bad Request")
+                            }
+                            404 -> {
+                                Log.e("Error 404", "Not Found")
+                            }
+                            else -> {
+                                Log.e("Error", "Generic Error")
+                            }
+                        }
+                    }
+                }
+
+                override fun onFailure(t: Throwable?) {
+                    if (t != null) {
+                        Log.e("Errorrrrr", t.message.toString())
+                    }
+                }
+            })
+
+
+
+
         } else {
             Toast.makeText(
                 this@MainActivity,
