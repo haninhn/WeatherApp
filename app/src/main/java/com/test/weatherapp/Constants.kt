@@ -21,7 +21,7 @@ object Constants {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //m is code version
             val network      = connectivityManager.activeNetwork ?: return false  //get the network if doesn't exist return false
             val activeNetWork = connectivityManager.getNetworkCapabilities(network) ?: return false //and then  check for network NetworkCapabilities
-            return when { // if true retur trus kan w7da fihom active
+            return when { // if true return true kan w7da fihom active
                 activeNetWork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
                 activeNetWork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
                 //for other device how are able to connect with Ethernet
