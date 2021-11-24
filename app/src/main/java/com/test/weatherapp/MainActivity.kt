@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity() {
                 }).onSameThread().check()
         }
     }
-
     // A function which is used to verify that the location or GPS is enable or not of the user's device.
     private  fun isLocationEnabled(): Boolean{
         val locationManager: LocationManager =
@@ -87,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         return  locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
+
 
 //   ( A alert dialog for denied permissions and if needed to allow it from the settings app info.)
 //    // START
@@ -139,7 +139,30 @@ class MainActivity : AppCompatActivity() {
 
             val longitude = mLastLocation.longitude
             Log.i("Current Longitude", "$longitude")
+            getLocationWeatherDetails()
         }
+    }
+    private fun getLocationWeatherDetails(){
+
+//          Here we will check whether the internet
+//          connection is available or not using the method which
+//          we have created in the Constants object.)
+
+        if (Constants.isNetworkAvailable(this@MainActivity)) {
+
+            Toast.makeText(
+                this@MainActivity,
+                "You have connected to the internet. Now you can make an api call.",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            Toast.makeText(
+                this@MainActivity,
+                "No internet connection available.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        // END
     }
 
 }
