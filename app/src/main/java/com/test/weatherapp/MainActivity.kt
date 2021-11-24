@@ -15,6 +15,8 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -311,9 +313,9 @@ class MainActivity : AppCompatActivity() {
             return value
         }
 
-        /**
-         * The function is used to get the formatted time based on the Format and the LOCALE we pass to it.
-         */
+
+         //The function is used to get the formatted time based on the Format and the LOCALE we pass to it.
+
         private fun unixTime(timex: Long): String? {
             val date = Date(timex * 1000L)
             @SuppressLint("SimpleDateFormat") val sdf =
@@ -321,4 +323,20 @@ class MainActivity : AppCompatActivity() {
             sdf.timeZone = TimeZone.getDefault()
             return sdf.format(date)
         }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            //( Now finally, make an api call on item selection.)
+            // START
+            R.id.action_refresh -> {
+                requestLocationData()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
     }
