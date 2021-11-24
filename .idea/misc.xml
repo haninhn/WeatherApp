@@ -3,7 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.17314814814814813" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/close.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/cloud.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/evening.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/humidity.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/location.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/morning.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/rain.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/snowflake.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/storm.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/sunny.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/sunrise.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/sunset.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/temperature.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/wind.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/TakiAcademy/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/dialog_custom_progress.xml" value="0.1" />
       </map>
     </option>
